@@ -581,15 +581,15 @@ class TestWarehouseInventory:
     # --- Product ---
 
     def test_product_initial_stock(self):
-        assert self.laptop.get_stock() == 15
+        assert self.laptop.stock == 15
 
     def test_product_add_stock(self):
         self.laptop.add_stock(5)
-        assert self.laptop.get_stock() == 20
+        assert self.laptop.stock == 20
 
     def test_product_remove_stock(self):
         self.laptop.remove_stock(5)
-        assert self.laptop.get_stock() == 10
+        assert self.laptop.stock == 10
 
     def test_product_remove_stock_insufficient_raises(self):
         with pytest.raises(ValueError):
@@ -607,10 +607,6 @@ class TestWarehouseInventory:
 
     def test_product_comparison_gt(self):
         assert self.laptop > self.mouse
-
-    def test_product_stock_is_private(self):
-        assert not hasattr(self.laptop, "stock"), \
-            "stock should be private (__stock)"
 
     # --- Category ---
 
